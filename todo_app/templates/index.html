@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Мои задачи</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 500px;
+            margin: 40px auto;
+        }
+        h1 {
+            color: #2c3e50;
+        }
+        .task {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        .task a {
+            color: #e74c3c;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Мои задачи</h1>
+
+    <form method="post" action="/add">
+        <input name="title" placeholder="Новая задача" required>
+        <button type="submit">Добавить</button>
+    </form>
+
+    <div>
+        {% for task in tasks %}
+        <div class="task">
+            <span>{{ task['title'] }}</span>
+            <a href="/delete/{{ task['id'] }}">удалить</a>
+        </div>
+        {% else %}
+        <p>Список пуст. Добавь первую задачу!</p>
+        {% endfor %}
+    </div>
+</body>
+</html>
